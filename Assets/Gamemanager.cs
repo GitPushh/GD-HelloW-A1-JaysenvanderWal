@@ -9,9 +9,10 @@ public class Gamemanager : MonoBehaviour
     public float score = 0;
     [SerializeField] Text text;
     [SerializeField] GameObject player;
+    public float hoi = 0;
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
