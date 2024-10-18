@@ -8,19 +8,22 @@ public class hoi : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed = 20;
     [SerializeField] float negativespeed = -200;
+    [SerializeField] float JumpSpeed = 200f;
+    [SerializeField] GameObject deadui;
+
     public Vector3 movement;
 
 
     void Start()
     {
-        
+        deadui.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        
        
     }
     void FixedUpdate()
@@ -33,4 +36,15 @@ public class hoi : MonoBehaviour
     {
         rb.velocity = direction * speed;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "enenmy")
+        {
+            Destroy(this.gameObject);
+
+        }
+    }
+
+
 }
