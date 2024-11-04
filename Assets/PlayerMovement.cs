@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     public float gravityMultiplier = 2f;
     public bool doubleJump = true;
+    public bool SprintActive = false;
 
     private Rigidbody rb;
     private Vector3 moveDirection;
@@ -24,6 +25,16 @@ public class PlayerMovement : MonoBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         moveDirection = (transform.right * moveX + transform.forward * moveZ) * moveSpeed;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = 20f;
+            SprintActive = true;
+        }
+        else
+        {
+            moveSpeed = 5f;
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
