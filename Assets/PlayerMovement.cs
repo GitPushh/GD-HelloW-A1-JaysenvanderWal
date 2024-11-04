@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 20f;
+            moveSpeed = 15f;
             SprintActive = true;
         }
         else
