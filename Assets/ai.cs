@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class ai : MonoBehaviour
 {
-    public Transform player;  // Reference to the player's transform
+    public Transform player;  
     private NavMeshAgent agent;
     public GameObject ui;
     public GameObject Player;
@@ -19,7 +19,6 @@ public class ai : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        // Find the player in the scene by tag if not manually assigned
         if (player == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("player");
@@ -32,7 +31,6 @@ public class ai : MonoBehaviour
 
     void Update()
     {
-        // Set the agent's destination to the player's position
         if (player != null)
         {
             agent.SetDestination(player.position);
