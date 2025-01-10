@@ -8,6 +8,7 @@ TagManager:
   - player
   - enenmy
   - pointblock
+  - MyTag
   layers:
   - Default
   - TransparentFX

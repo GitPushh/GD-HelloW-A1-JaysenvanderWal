@@ -10,10 +10,14 @@ public class PointSystem : MonoBehaviour
     public int gamePoints = 0;
     public Text pointtext;
 
+    procent procent;
+
+
 
     void Start()
     {
-        
+        pointtext.text = "Collected: " + gamePoints.ToString();
+
     }
 
     // Update is called once per frame
@@ -25,7 +29,7 @@ public class PointSystem : MonoBehaviour
     void PointsUpdate(int points)
     {
         gamePoints += points;
-        pointtext.text = gamePoints.ToString();
+        pointtext.text = "Collected: " + gamePoints.ToString();
         Debug.Log("Points added " + points);
     }
 
@@ -33,8 +37,11 @@ public class PointSystem : MonoBehaviour
     {
         if(collision.collider.tag == "pointblock")
         {
-            PointsUpdate(5);
+            PointsUpdate(1);
             Destroy(collision.collider.gameObject);
+
+            procent.pee = 0f;
+            Debug.Log("kaas");
         }
     }
 }

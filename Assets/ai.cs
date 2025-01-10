@@ -11,6 +11,7 @@ public class ai : MonoBehaviour
     private NavMeshAgent agent;
     public GameObject ui;
     public GameObject Player;
+    public GameObject monster;
 
 
 
@@ -34,7 +35,6 @@ public class ai : MonoBehaviour
         if (player != null)
         {
             agent.SetDestination(player.position);
-            Debug.Log("working");
         }
     }
 
@@ -42,9 +42,9 @@ public class ai : MonoBehaviour
     {
         if(collision.collider.tag == "player")
         {
-            Destroy(Player);
-            ui.SetActive(true);
-            Debug.Log("working");
+            monster.SetActive(true);
+            this.gameObject.SetActive(false);
+            
         }
     }
 }
