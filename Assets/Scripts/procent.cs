@@ -50,7 +50,7 @@ public class procent : MonoBehaviour
             if(volume.profile.TryGetSettings(out vig))
             {
                 vig.intensity.overrideState = true;
-                vig.intensity.value = sanity / 150;
+                vig.intensity.value = sanity / 120;
             }
             
         }
