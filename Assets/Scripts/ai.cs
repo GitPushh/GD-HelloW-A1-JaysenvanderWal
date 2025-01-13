@@ -12,13 +12,9 @@ public class ai : MonoBehaviour
     public GameObject ui;
     public GameObject Player;
     public GameObject monster;
-    private float timer;
-    public GameObject deathUI;
 
 
-    public bool collided = false;
 
-    public procent procent;
 
 
 
@@ -39,16 +35,14 @@ public class ai : MonoBehaviour
 
     void Update()
     {
+
         if (player != null)
         {
             agent.SetDestination(player.position);
         }
 
-        if (collided == true) {
-            timer += Time.deltaTime;
-            deathUI.SetActive(true);
-            Debug.Log("death");
-        }
+
+       
 
     }
 
@@ -59,8 +53,7 @@ public class ai : MonoBehaviour
     {
         if(collision.collider.tag == "player")
         {
-            collided = true;
-
+            agent.enabled = false;
             monster.SetActive(true);
             this.gameObject.SetActive(false);
 

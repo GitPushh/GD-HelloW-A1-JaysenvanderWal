@@ -48,7 +48,7 @@ public class PointSystem : MonoBehaviour
         if(collision.collider.tag == "sanity")
         {
             Destroy(collision.collider.gameObject);
-            procent.pee = 1f;
+            procent.sanity = 1f;
             
         }
     }

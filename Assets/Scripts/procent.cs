@@ -7,14 +7,12 @@ using UnityEngine.Rendering.PostProcessing;
 public class procent : MonoBehaviour
 {
     public Text counter;
-    public GameObject gameovertext;
-    public Text gameovertexttext;
     public GameObject player;
-    public GameObject peeanimation;
-    public GameObject peeanimation2;
+    public GameObject jumpscare1;
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject postpros;
-    float timer;
+    [SerializeField] float timer;
+    public float sanity;
 
     public GameObject deathUI;
 
@@ -22,13 +20,13 @@ public class procent : MonoBehaviour
 
     public PostProcessVolume volume;
     public GameObject pp;
-    public float pee;
     private ChromaticAberration chromaticAberration;
+    private Grain grain;
+    private Vignette vig;
 
     void Start()
     {
         volume = pp.GetComponent<PostProcessVolume>();
-        
     }
 
     void Update()
@@ -39,7 +37,20 @@ public class procent : MonoBehaviour
             if (volume.profile.TryGetSettings(out chromaticAberration))
             {
                 chromaticAberration.intensity.overrideState = true; 
-                chromaticAberration.intensity.value = pee / 100; 
+                chromaticAberration.intensity.value = sanity / 100;
+                
+            }
+
+            if(volume.profile.TryGetSettings(out grain))
+            {
+                grain.intensity.overrideState = true;
+                grain.intensity.value = sanity / 100;
+
+            }
+            if(volume.profile.TryGetSettings(out vig))
+            {
+                vig.intensity.overrideState = true;
+                vig.intensity.value = sanity / 150;
             }
             
         }
@@ -67,26 +78,23 @@ public class procent : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                pee += Time.deltaTime * 10;
+                sanity += Time.deltaTime * 10;
             }
         }
 
-        float displayValue = 100 - pee;
+        float displayValue = 100 - sanity;
 
         displayValue = Mathf.Clamp(displayValue, 0, 100);
 
         counter.text = "Sanity: " + displayValue.ToString("F0") + "%";
 
-        if (pee >= 100f && pee <= 200f)
+        if (sanity >= 100f && sanity <= 200f)
         {
             enemy.SetActive(false);
-            peeanimation.SetActive(true);
+            jumpscare1.SetActive(true);
             Death();
         }
-        else if (pee > 200f)
-        {
-            peeanimation.SetActive(false);
-        }
+        
 
     }
 }
