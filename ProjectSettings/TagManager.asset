@@ -9,6 +9,8 @@ TagManager:
   - enenmy
   - pointblock
   - MyTag
+  - sanity
+  - Enemy
   layers:
   - Default
   - TransparentFX

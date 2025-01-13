@@ -21,14 +21,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
 
         moveDirection = (transform.right * moveX + transform.forward * moveZ) * moveSpeed;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 15f;
+            moveSpeed = 7f;
             SprintActive = true;
         }
         else

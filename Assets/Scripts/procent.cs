@@ -14,6 +14,11 @@ public class procent : MonoBehaviour
     public GameObject peeanimation2;
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject postpros;
+    float timer;
+
+    public GameObject deathUI;
+
+
 
     public PostProcessVolume volume;
     public GameObject pp;
@@ -41,36 +46,47 @@ public class procent : MonoBehaviour
       
     }
 
+    public void Death()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= 1f)
+        {
+            deathUI.SetActive(true);
+            Debug.Log("death");
+
+        }
+    }
+
     void UpdatePiss()
     {
         Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
 
-        if (Physics.Raycast(player.transform.position, fwd, 10))
+        if (Physics.Raycast(player.transform.position, fwd, out hit, 30))
         {
-            pee += Time.deltaTime * 10;
-            counter.text = "Sanity: " + pee.ToString("F1") + "%";
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                pee += Time.deltaTime * 10;
+            }
         }
 
-        if (chromaticAberration != null)
-        {
-            chromaticAberration.intensity.value = Mathf.Clamp(pee / 200f, 0, 1); 
-        }
+        float displayValue = 100 - pee;
+
+        displayValue = Mathf.Clamp(displayValue, 0, 100);
+
+        counter.text = "Sanity: " + displayValue.ToString("F0") + "%";
 
         if (pee >= 100f && pee <= 200f)
         {
             enemy.SetActive(false);
             peeanimation.SetActive(true);
-            postpros.SetActive(true);
+            Death();
         }
         else if (pee > 200f)
         {
             peeanimation.SetActive(false);
-            peeanimation2.SetActive(true);
         }
-        else if (pee < 100f)
-        {
-            gameovertext.SetActive(false);
-            peeanimation.SetActive(false);
-        }
+
     }
 }

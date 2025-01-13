@@ -10,7 +10,9 @@ public class PointSystem : MonoBehaviour
     public int gamePoints = 0;
     public Text pointtext;
 
-    procent procent;
+    public procent procent;
+
+
 
 
 
@@ -40,8 +42,14 @@ public class PointSystem : MonoBehaviour
             PointsUpdate(1);
             Destroy(collision.collider.gameObject);
 
-            procent.pee = 0f;
             Debug.Log("kaas");
+        }
+
+        if(collision.collider.tag == "sanity")
+        {
+            Destroy(collision.collider.gameObject);
+            procent.pee = 1f;
+            
         }
     }
 }
