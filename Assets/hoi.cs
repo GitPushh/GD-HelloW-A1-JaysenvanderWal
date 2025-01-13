@@ -34,7 +34,7 @@ public class hoi : MonoBehaviour
 
     void moveCharacter(Vector3 direction)
     {
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
