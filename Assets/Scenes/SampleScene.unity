@@ -972,7 +972,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9863732, b: 0.79559743, a: 1}
-  m_Intensity: 3.27
+  m_Intensity: 2.05
   m_Range: 41.2
   m_SpotAngle: 48.1
   m_InnerSpotAngle: 21.80208
@@ -1168,7 +1168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 315}
+  m_AnchoredPosition: {x: 0, y: 483}
   m_SizeDelta: {x: 1245.4658, y: 405.2813}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316083757
@@ -6823,7 +6823,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1496000405324286, guid: 94f10da449387134eb5a2276906ccdfd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94f10da449387134eb5a2276906ccdfd, type: 3}
@@ -7258,7 +7259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 924, y: 316}
+  m_AnchoredPosition: {x: 924, y: 475}
   m_SizeDelta: {x: 1245.4658, y: 405.2813}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1444828330
