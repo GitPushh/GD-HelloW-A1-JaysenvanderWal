@@ -27,10 +27,12 @@ public class procent : MonoBehaviour
     void Start()
     {
         volume = pp.GetComponent<PostProcessVolume>();
+
     }
 
     void Update()
     {
+
         UpdatePiss();
         if (volume != null && volume.profile != null)
         {
