@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.AI;
 
 public class procent : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class procent : MonoBehaviour
     [SerializeField] GameObject postpros;
     [SerializeField] float timer;
     public float sanity;
+    public NavMeshAgent agent;
 
     public GameObject deathUI;
+    
 
 
 
@@ -27,7 +30,7 @@ public class procent : MonoBehaviour
     void Start()
     {
         volume = pp.GetComponent<PostProcessVolume>();
-
+        
     }
 
     void Update()
@@ -52,7 +55,7 @@ public class procent : MonoBehaviour
             if(volume.profile.TryGetSettings(out vig))
             {
                 vig.intensity.overrideState = true;
-                vig.intensity.value = sanity / 120;
+                vig.intensity.value = sanity / 200;
             }
             
         }
@@ -69,6 +72,7 @@ public class procent : MonoBehaviour
             Debug.Log("death");
 
         }
+
     }
 
     void UpdatePiss()
@@ -84,6 +88,7 @@ public class procent : MonoBehaviour
             }
         }
 
+
         float displayValue = 100 - sanity;
 
         displayValue = Mathf.Clamp(displayValue, 0, 100);
@@ -96,7 +101,16 @@ public class procent : MonoBehaviour
             jumpscare1.SetActive(true);
             Death();
         }
-        
+
+        if(sanity < 5)
+        {
+            agent.speed = 2f;
+        }
+        else
+        {
+            agent.speed = sanity / 10;
+        }
+
 
     }
 }
