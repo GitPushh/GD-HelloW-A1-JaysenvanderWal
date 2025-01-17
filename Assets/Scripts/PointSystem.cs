@@ -49,6 +49,7 @@ public class PointSystem : MonoBehaviour
         {
             Destroy(collision.collider.gameObject);
             procent.sanity = 1f;
+            procent.flashlightBattery = 100f;
             
         }
     }

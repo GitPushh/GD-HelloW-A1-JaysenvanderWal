@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class ai : MonoBehaviour
 {
@@ -12,6 +14,13 @@ public class ai : MonoBehaviour
     public GameObject ui;
     public GameObject Player;
     public GameObject monster;
+    public GameObject raycast;
+    public GameObject spawn;
+
+    public float wanderRadius = 40f; 
+    public float wanderInterval = 0.3f;
+    public float timewanderedmax;
+    private float wanderTimer;
 
 
 
@@ -21,6 +30,7 @@ public class ai : MonoBehaviour
 
     void Start()
     {
+       
         agent = GetComponent<NavMeshAgent>();
 
         if (player == null)
@@ -29,24 +39,65 @@ public class ai : MonoBehaviour
             if (playerObject != null)
             {
                 player = playerObject.transform;
+                
             }
         }
     }
 
     void Update()
     {
+        Vector3 directionToPlayer = (player.position - raycast.transform.position).normalized;
+        RaycastHit hit;
 
-        if (player != null)
+        if (Physics.Raycast(raycast.transform.position, directionToPlayer, out hit, 30))
         {
-            agent.SetDestination(player.position);
+            if (hit.collider.CompareTag("player"))
+            {
+                if (player != null)
+                {
+                    agent.SetDestination(player.position);
+                    timewanderedmax = 0f;
+
+                }
+               
+                return;
+            }
+        }
+       
+
+
+        wanderTimer += Time.deltaTime;
+        if (wanderTimer >= wanderInterval)
+        {
+            Vector3 newWanderPosition = GetRandomWanderPosition();
+            agent.SetDestination(newWanderPosition);
+            wanderTimer = 0f;
+
+         
+        }
+
+        timewanderedmax += Time.deltaTime;
+
+        if (timewanderedmax >= 30f)
+        {
+            transform.position = spawn.transform.position;
         }
 
 
-       
+
 
     }
 
-    
+    Vector3 GetRandomWanderPosition()
+    {
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * wanderRadius;
+        randomDirection += transform.position;
+
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randomDirection, out navHit, wanderRadius, NavMesh.AllAreas);
+
+        return navHit.position;
+    }
 
 
     private void OnCollisionEnter(Collision collision)

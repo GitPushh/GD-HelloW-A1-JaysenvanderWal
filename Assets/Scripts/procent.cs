@@ -13,10 +13,14 @@ public class procent : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject postpros;
     [SerializeField] float timer;
+    [SerializeField] Text flashlightText;
+    [SerializeField] GameObject flashlightlight;
     public float sanity;
     public NavMeshAgent agent;
 
     public GameObject deathUI;
+
+    public float flashlightBattery = 100f;
     
 
 
@@ -37,6 +41,7 @@ public class procent : MonoBehaviour
     {
 
         UpdatePiss();
+        FlashLightBatt();
         if (volume != null && volume.profile != null)
         {
             if (volume.profile.TryGetSettings(out chromaticAberration))
@@ -59,7 +64,9 @@ public class procent : MonoBehaviour
             }
             
         }
-      
+        
+
+        
     }
 
     public void Death()
@@ -102,9 +109,9 @@ public class procent : MonoBehaviour
             Death();
         }
 
-        if(sanity < 5)
+        if(sanity < 20)
         {
-            agent.speed = 2f;
+            agent.speed = 3.5f;
         }
         else
         {
@@ -112,5 +119,14 @@ public class procent : MonoBehaviour
         }
 
 
+    }
+
+    void FlashLightBatt()
+    {
+        flashlightBattery -= Time.deltaTime /2;
+        flashlightText.text = "Flashlight Battery: "+ flashlightBattery.ToString("F1");
+
+        if(flashlightBattery <= 0)
+        flashlightlight.SetActive(false);
     }
 }
