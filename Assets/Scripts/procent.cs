@@ -21,6 +21,7 @@ public class procent : MonoBehaviour
     public GameObject deathUI;
 
     public float flashlightBattery = 100f;
+    public Slider scrollbar;
     
 
 
@@ -123,10 +124,11 @@ public class procent : MonoBehaviour
 
     void FlashLightBatt()
     {
-        flashlightBattery -= Time.deltaTime /2;
-        flashlightText.text = "Flashlight Battery: "+ flashlightBattery.ToString("F1");
+        flashlightBattery -= Time.deltaTime * 5;
+        scrollbar.value = flashlightBattery / 100;
 
-        if(flashlightBattery <= 0)
+
+        if (flashlightBattery <= 0)
         flashlightlight.SetActive(false);
     }
 }
