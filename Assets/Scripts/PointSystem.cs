@@ -9,6 +9,7 @@ public class PointSystem : MonoBehaviour
     // Start is called before the first frame update
     public int gamePoints = 0;
     public Text pointtext;
+    public bool completedGame = false; 
 
     public procent procent;
 
@@ -33,6 +34,8 @@ public class PointSystem : MonoBehaviour
         gamePoints += points;
         pointtext.text = "Collected: " + gamePoints.ToString();
         Debug.Log("Points added " + points);
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,7 +46,16 @@ public class PointSystem : MonoBehaviour
             Destroy(collision.collider.gameObject);
 
             Debug.Log("kaas");
+
+            if(gamePoints ==1)
+            {
+                completedGame = true;   
+            }
         }
+
+        
+
+
 
         if(collision.collider.tag == "sanity")
         {
