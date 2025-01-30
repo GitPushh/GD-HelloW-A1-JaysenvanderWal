@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PointSystem : MonoBehaviour
 {
     // Start is called before the first frame update
     public int gamePoints = 0;
     public Text pointtext;
-    public bool completedGame = false; 
+    public bool completedGame = false;
 
     public procent procent;
 
@@ -47,9 +50,11 @@ public class PointSystem : MonoBehaviour
 
             Debug.Log("kaas");
 
-            if(gamePoints ==1)
+            if(gamePoints == 3)
             {
-                completedGame = true;   
+                completedGame = true;
+
+                SceneManager.LoadScene(0);  
             }
         }
 
