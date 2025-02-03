@@ -35,7 +35,7 @@ public class PointSystem : MonoBehaviour
     void PointsUpdate(int points)
     {
         gamePoints += points;
-        pointtext.text = "Collected: " + gamePoints.ToString();
+        pointtext.text = "Collected: " + gamePoints.ToString() + "/3";
         Debug.Log("Points added " + points);
 
 

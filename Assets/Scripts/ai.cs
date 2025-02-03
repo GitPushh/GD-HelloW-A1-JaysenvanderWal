@@ -78,7 +78,7 @@ public class ai : MonoBehaviour
 
         timewanderedmax += Time.deltaTime;
 
-        if (timewanderedmax >= 30f)
+        if (timewanderedmax >= 15f)
         {
             transform.position = spawn.transform.position;
         }

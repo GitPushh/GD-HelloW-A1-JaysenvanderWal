@@ -124,7 +124,7 @@ public class procent : MonoBehaviour
 
     void FlashLightBatt()
     {
-        flashlightBattery -= Time.deltaTime * 5;
+        flashlightBattery -= Time.deltaTime * 2;
         scrollbar.value = flashlightBattery / 100;
 
 
